@@ -12,17 +12,25 @@ has to be delivered in a standard, cross-platform format.
 
 ## Project
 
-Name:
+Name: pandas-dev/pandas
 
-URL:
+URL: https://github.com/pandas-dev/pandas
 
-One or two sentences describing it
+#### One or two sentences describing it
+pandas is a Python package that provides fast, flexible, and expressive data structures designed to make working with "relational" or "labeled" data both easy and intuitive. It aims to be the fundamental high-level building block for doing practical, real world data analysis in Python.
 
 ## Onboarding experience
 
-Did you choose a new project or continue on the previous one?
+#### Did you choose a new project or continue on the previous one?
 
-If you changed the project, how did your experience differ from before?
+We chose a new project. In Assignment 3 we had a project with Algorithms, hence we
+hade to choose a new one for this assignment.
+
+#### If you changed the project, how did your experience differ from before?
+
+Much more difficult to build and get an understanding of how to run all tests.
+The installation process was not perfect either, with a few of us struggling.
+Also more difficult to get an understanding of the program as a whole. 
 
 ## Effort spent
 
@@ -59,6 +67,12 @@ Summary in one or two sentences
 Scope (functionality and code affected).
 
 ## Requirements for the new feature or requirements affected by functionality being refactored
+
+### Issue resolution
+#### Identify requirements related to the issue. If the requirements are not documented yet, try to describe them based on code reviews and existing test cases. Create a project plan for testing these requirements, and working on the issue.
+
+There are no documented requirements for this issue. In the issue there is expected behaviour, which works as
+requirement and guide for understanding what the program should do. From looking at other parts of the code, you get an understanding for the expected behaviour. Use existing test that currently marked as xfail since they are expected to fail. Remove xfail to see which tests fail.
 
 Optional (point 3): trace tests to requirements.
 
