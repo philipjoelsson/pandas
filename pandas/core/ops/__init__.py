@@ -429,10 +429,12 @@ def _maybe_align_series_as_frame(frame: DataFrame, series: Series, axis: AxisInt
         rvalues = rvalues.reshape(1, -1)
 
     rvalues = np.broadcast_to(rvalues, frame.shape)
+
     # pass dtype to avoid doing inference
-    return type(frame)(
-        rvalues, index=frame.index, columns=frame.columns, dtype=rvalues.dtype
-    )
+    out = type(frame)(rvalues, index=frame.index, columns=frame.columns, dtype=rvalues.dtype)
+    out.__finalize__(series)    # Propagate meta-data so it is not lost in alignment
+    
+    return out
 
 
 def flex_arith_method_FRAME(op):

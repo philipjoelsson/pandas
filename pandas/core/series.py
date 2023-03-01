@@ -6020,7 +6020,7 @@ Keep all original rows and also all original values
         with np.errstate(all="ignore"):
             res_values = ops.comparison_op(lvalues, rvalues, op)
 
-        return self._construct_result(res_values, name=res_name)
+        return self._construct_result(res_values, other=other, name=res_name)
 
     def _logical_method(self, other, op):
         res_name = ops.get_op_result_name(self, other)
@@ -6030,7 +6030,7 @@ Keep all original rows and also all original values
         rvalues = extract_array(other, extract_numpy=True, extract_range=True)
 
         res_values = ops.logical_op(lvalues, rvalues, op)
-        return self._construct_result(res_values, name=res_name)
+        return self._construct_result(res_values, other=other, name=res_name)
 
     def _arith_method(self, other, op):
         self, other = ops.align_method_SERIES(self, other)

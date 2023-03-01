@@ -7415,7 +7415,7 @@ class DataFrame(NDFrame, OpsMixin):
 
         # See GH#4537 for discussion of scalar op behavior
         new_data = self._dispatch_frame_op(other, op, axis=axis)
-        return self._construct_result(new_data)
+        return self._construct_result(new_data, other)
 
     def _arith_method(self, other, op):
         if ops.should_reindex_frame_op(self, other, op, 1, None, None):
@@ -7427,7 +7427,7 @@ class DataFrame(NDFrame, OpsMixin):
         self, other = ops.align_method_FRAME(self, other, axis, flex=True, level=None)
 
         new_data = self._dispatch_frame_op(other, op, axis=axis)
-        return self._construct_result(new_data)
+        return self._construct_result(new_data, other)
 
     _logical_method = _arith_method
 
@@ -7526,7 +7526,7 @@ class DataFrame(NDFrame, OpsMixin):
         new_data = self._dispatch_frame_op(other, _arith_op)
         return new_data
 
-    def _construct_result(self, result) -> DataFrame:
+    def _construct_result(self, result, other=None) -> DataFrame:
         """
         Wrap the result of an arithmetic, comparison, or logical operation.
 
@@ -7538,7 +7538,11 @@ class DataFrame(NDFrame, OpsMixin):
         -------
         DataFrame
         """
-        out = self._constructor(result, copy=False).__finalize__(self)
+        out = self._constructor(result, copy=False)
+        out.__finalize__(self)
+        if other is not None:
+            out.__finalize__(other)
+
         # Pin columns instead of passing to constructor for compat with
         #  non-unique columns case
         out.columns = self.columns
