@@ -1388,7 +1388,7 @@ class IndexOpsMixin(OpsMixin):
         with np.errstate(all="ignore"):
             result = ops.arithmetic_op(lvalues, rvalues, op)
 
-        return self._construct_result(result, name=res_name)
+        return self._construct_result(result, other=other, name=res_name)
 
     def _construct_result(self, result, name):
         """

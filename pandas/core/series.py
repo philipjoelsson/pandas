@@ -2995,10 +2995,10 @@ Name: Max Speed, dtype: float64
             result = func(this_vals, other_vals)
 
         name = ops.get_op_result_name(self, other)
-        return this._construct_result(result, name)
+        return this._construct_result(result, other, name)
 
     def _construct_result(
-        self, result: ArrayLike | tuple[ArrayLike, ArrayLike], name: Hashable
+        self, result: ArrayLike | tuple[ArrayLike, ArrayLike], name: Hashable, other=None
     ) -> Series | tuple[Series, Series]:
         """
         Construct an appropriately-labelled Series from the result of an op.
@@ -3028,7 +3028,9 @@ Name: Max Speed, dtype: float64
         #  JSONArray tests
         dtype = getattr(result, "dtype", None)
         out = self._constructor(result, index=self.index, dtype=dtype)
-        out = out.__finalize__(self)
+        out = out.__finalize__(self)            # Propagate meta-data
+        if other is not None:
+            out = out.__finalize__(other)           # Propagate meta-data 
 
         # Set the result's name after __finalize__ is called because __finalize__
         #  would set it back to self.name

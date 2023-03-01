@@ -506,13 +506,13 @@ def test_binops(request, args, annotate, all_binary_operators):
 
     if not (isinstance(left, int) or isinstance(right, int)) and annotate != "both":
         if not all_binary_operators.__name__.startswith("r"):
-            if annotate == "right" and isinstance(left, type(right)):
+            """ if annotate == "right" and isinstance(left, type(right)):
                 request.node.add_marker(
                     pytest.mark.xfail(
                         reason=f"{all_binary_operators} doesn't work when right has "
                         f"attrs and both are {type(left)}"
                     )
-                )
+                ) """
             if not isinstance(left, type(right)):
                 if annotate == "left" and isinstance(left, pd.Series):
                     request.node.add_marker(
@@ -529,13 +529,13 @@ def test_binops(request, args, annotate, all_binary_operators):
                         )
                     )
         else:
-            if annotate == "left" and isinstance(left, type(right)):
+            """ if annotate == "left" and isinstance(left, type(right)):
                 request.node.add_marker(
                     pytest.mark.xfail(
                         reason=f"{all_binary_operators} doesn't work when left has "
                         f"attrs and both are {type(left)}"
                     )
-                )
+                ) """
             if not isinstance(left, type(right)):
                 if annotate == "right" and isinstance(right, pd.Series):
                     request.node.add_marker(
