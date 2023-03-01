@@ -71,8 +71,9 @@ Scope (functionality and code affected).
 ### Issue resolution
 #### Identify requirements related to the issue. If the requirements are not documented yet, try to describe them based on code reviews and existing test cases. Create a project plan for testing these requirements, and working on the issue.
 
-There are no documented requirements for this issue. In the issue there is expected behaviour, which works as
-requirement and guide for understanding what the program should do. From looking at other parts of the code, you get an understanding for the expected behaviour. Use existing test that currently marked as xfail since they are expected to fail. Remove xfail to see which tests fail.
+There are no documented requirements for this issue. In the issue there is documented expected behaviour, which works as
+requirement and guide for understanding what the program should do. From looking at other parts of the code, you get an understanding for the expected behaviour. There are existing tests that are marked as xfail, meaning they are expected to fail. When xfail assertion is removed the tests fail. The plan is to fix the issue and then remove the xfail markings and confirm that the tests then pass. Since there already are tests
+for this issue and the tests existing are sufficient, there is no need for further adding new tests.
 
 Optional (point 3): trace tests to requirements.
 
@@ -80,18 +81,28 @@ Optional (point 3): trace tests to requirements.
 
 ### Patch
 
-(copy your changes or the add git command to show them)
 
-git diff ...
+```
+git diff main..refactor1
+```
 
-Optional (point 4): the patch is clean.
+#### Optional (point 4): the patch is clean.
+Yes, the patch is clean. There is no debug output and all code that was no longer neccesary was removed rather than commented out.
 
-Optional (point 5): considered for acceptance (passes all automated checks).
+#### Optional (point 5): considered for acceptance (passes all automated checks).
 
 ## Test results
 
-Overall results with link to a copy or excerpt of the logs (before/after
-refactoring).
+#### Overall results with link to a copy or excerpt of the logs (before/after refactoring).
+
+Only the testfile referenced in issue was tested. Testing the whole test-suite did not work, as there are to
+many test-cases. Approximately 500000 tests in total in the whole test-suite.
+
+Before issue was resolved:
+104 failed, 416 passed, 104 skipped
+
+After issue was resolved:
+520 passed, 104 skipped
 
 ## UML class diagram and its description
 
@@ -103,9 +114,10 @@ Optional (point 2): relation to design pattern(s).
 
 ## Overall experience
 
-What are your main take-aways from this project? What did you learn?
+#### What are your main take-aways from this project? What did you learn?
 
-How did you grow as a team, using the Essence standard to evaluate yourself?
+#### How did you grow as a team, using the Essence standard to evaluate yourself?
+We evaluated that according to the essence checklist (p. 52), we are working on the "Performing" level. This is because we fulfill all the checklist items before "Performing" in addition to the ones directly linked to "Performing". The team identifies and adresses problem without any outside help and is effective in the sense that minimal backtracking or reworking has been neccesary. We do not consider ourselves to fulfill "Adjourned" however, as we are not yet done with everything related to the issue. Further work could be done to resolve the issue in a better way.
 
 Optional (point 6): How would you put your work in context with best software engineering practice?
 
