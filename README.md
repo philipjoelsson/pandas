@@ -72,7 +72,7 @@ Scope (functionality and code affected).
 #### Identify requirements related to the issue. If the requirements are not documented yet, try to describe them based on code reviews and existing test cases. Create a project plan for testing these requirements, and working on the issue.
 
 There are no documented requirements for this issue. In the issue there is documented expected behaviour, which works as
-requirement and guide for understanding what the program should do. From looking at other parts of the code, you get an understanding for the expected behaviour. There are existing tests that are marked as xfail, meaning they are expected to fail. When xfail assertion is removed the tests fail. The plan is to fix the issue and then remove the xfail markings and confirm that the tests then pass. Since there already are tests
+requirement and guide for understanding what the program should do. From looking at other parts of the code, you get an understanding for the expected behaviour. There are existing tests that are marked as xfail, meaning they are expected to fail. The plan is to fix the issue and then remove the xfail markings and confirm that the tests then pass. Since there already are tests
 for this issue and the tests existing are sufficient, there is no need for further adding new tests.
 
 Optional (point 3): trace tests to requirements.
@@ -81,10 +81,11 @@ Optional (point 3): trace tests to requirements.
 
 ### Patch
 
-
 ```
 git diff main..refactor1
 ```
+
+In the file containing all test cases relevant to the issue, we removed several lines of code. This code was simply marking all test cases relevant to the issue as "xfail" which tells pytest (the testing package used in the project) that they are expected to fail. After resolving the issue, we removed the markings because the tests are now expected to pass.
 
 #### Optional (point 4): the patch is clean.
 Yes, the patch is clean. There is no debug output and all code that was no longer neccesary was removed rather than commented out.
