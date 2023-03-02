@@ -87,6 +87,10 @@ git diff main..refactor1
 
 In the file containing all test cases relevant to the issue, we removed several lines of code. This code was simply marking all test cases relevant to the issue as "xfail" which tells pytest (the testing package used in the project) that they are expected to fail. After resolving the issue, we removed the markings because the tests are now expected to pass.
 
+More specifically the changes we did was when calling for the method _contruct_result we also send the other Series into that function. Cause what happened in _contruct_result was that it then called __finalize__ which basically added the attributes to the result, it only did so no the first Series. When now sending the other Series to the method we could alos call __finalize__ with the other, making its attributes being added to the result aswell.
+
+The other change we did was concering the fact that when adding together a Series and a DataFrame, the Series was first transformed to a DataFrame. In this conversion the attributes did not follow, as there was no implementation of it doing so. What we then did was to call __finalize__ on the newly created DataFrame, sending in the old Series, which added the attributes of the Series to the DataFrame.
+
 #### Optional (point 4): the patch is clean.
 Yes, the patch is clean. There is no debug output and all code that was no longer neccesary was removed rather than commented out.
 
