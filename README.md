@@ -119,7 +119,10 @@ After issue was resolved:
 
 Optional (point 1): Architectural overview.
 
-Optional (point 2): relation to design pattern(s).
+#### Optional (point 2): relation to design pattern(s).
+For changes in the source there were a few patterns we had to take into consideration. For such a small issue as we had, we quickly decided not make any new functions for resolving the issue. Rather we made some minor changes in the existing function. For example there was a function which was called finalize which basically took the attributes of one Series or DataFrame and copied it to the newly created Series/DataFrame. Instead of changing how finalize worked, perhaps changing so it took both old Series/DataFrames as inputs, we decided to just call finalize once again with the other Series/DataFrame. This might not be the most neat solution but changing finalize would require more changes to the design pattern than we felt was comfortable. If one were to make an more thorough refactoring you would probably look to make changes to the function that adds the Series/DataFrames to handle attributes in the same stage rather than having a function which needs to be called in the end. But since attributes seems to be quite new in Pandas, it kind of looks like they just added a new function implementing what they wanted.
+
+Below you can see a call graph where the red lines show what we changed.
 
 ## Overall experience
 
