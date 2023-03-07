@@ -179,12 +179,12 @@ The issue itself stemmed from arithmetic operations only taking into account the
 
 ##### Original call graph
 <div>
-  <img src='/pandas_original_callgraph.jpg' width='400'/>
+  <img src='/pandas_original_callgraph.jpg' width='800'/>
 </div>
 
 ##### Patched call graph
 <div>
-  <img src='/pandas_patched_callgraph.jpg' width='400'/>
+  <img src='/pandas_patched_callgraph.jpg' width='800'/>
 </div>
 
 The other change we did was concering the fact that when adding together a Series and a DataFrame, the Series was first transformed to a DataFrame. In this conversion the attributes did not follow, as there was no implementation of it doing so. What we then did was to call __finalize__ on the newly created DataFrame, sending in the old Series, which added the attributes of the Series to the DataFrame.
