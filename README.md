@@ -75,7 +75,95 @@ There are no documented requirements for this issue. In the issue there is docum
 requirement and guide for understanding what the program should do. From looking at other parts of the code, you get an understanding for the expected behaviour. There are existing tests that are marked as xfail, meaning they are expected to fail. The plan is to fix the issue and then remove the xfail markings and confirm that the tests then pass. Since there already are tests
 for this issue and the tests existing are sufficient, there is no need for further adding new tests.
 
+The requirements related to this issue are as follows:
+  1. The binary operations for Series and Dataframe propagate attrs correctly no matter the order.
+  2. The tests set as xfail, which are expected to fail should be removed and the will be tested without being expected to fail.
+  3. All binary operators for Series and Dataframe should work as excpected based on the example in the issue(see bellow).
+  4. The operators should work with two Series, two Dataframes or a mix of the two no matter the order.
+
+### Example of the current issue (For addition)
+```
+In [1]: ser1 = pd.Series(range(1))
+
+In [2]: ser2 = pd.Series(range(1))
+
+In [3]: ser1.attrs = {1:2}
+
+In [4]: val1 = ser1 + ser2
+
+In [5]: val2 = ser2 + ser1
+
+In [6]: val1.attrs
+Out[6]: {1:2}
+
+In [7]: val2.attrs
+Out[7]: {}
+```
+
+### A successful test should give
+```
+In [6]: val1.attrs
+Out[6]: {1:2}
+
+In [7]: val2.attrs
+Out[7]: {1:2}
+```
+
 Optional (point 3): trace tests to requirements.
+
+All of the requirements can be traced to existing tests in test_finilize::test_binops where all operators are tested for Dataframe and Series. All operators for both Dataframe and Series are tested from line 554-574(Requirement 1). The xfail are all between line 507-553 and have been removed(Requirement 2). The tests are completed if the operator returns the attributes of {"a": 1} no matter order or operator, including addition just as the example above(Requirement 3). All different orders are set in the @pytest.mark.parametrize from line 480-493, where it then is tested as specified for requirement 1(Requirement 4). Code snippets can be seen bellow for the requirements.
+
+### Loading all the different binary operator used for the test and running the test(Requirement 1 and 3)
+
+```
+is_cmp = all_binary_operators in [
+        operator.eq,
+        operator.ne,
+        operator.gt,
+        operator.ge,
+        operator.lt,
+        operator.le,
+    ]
+    if is_cmp and isinstance(left, pd.DataFrame) and isinstance(right, pd.Series):
+        # in 2.0 silent alignment on comparisons was removed xref GH#28759
+        left, right = left.align(right, axis=1, copy=False)
+    elif is_cmp and isinstance(left, pd.Series) and isinstance(right, pd.DataFrame):
+        right, left = right.align(left, axis=1, copy=False)
+
+    result = all_binary_operators(left, right)
+    assert result.attrs == {"a": 1}
+```
+
+### Example of one of the expected failures using xfail that has been removed(Requirement 2)
+
+```
+if annotate == "right" and isinstance(left, type(right)):
+                request.node.add_marker(
+                    pytest.mark.xfail(
+                        reason=f"{all_binary_operators} doesn't work when right has "
+                        f"attrs and both are {type(left)}"
+                    )
+                )
+```
+
+### All of the different test cases are loaded as parameters to be tested(Requirement 4)
+
+```
+@pytest.mark.parametrize(
+    "args",
+    [
+        (1, pd.Series([1])),
+        (1, pd.DataFrame({"A": [1]})),
+        (pd.Series([1]), 1),
+        (pd.DataFrame({"A": [1]}), 1),
+        (pd.Series([1]), pd.Series([1])),
+        (pd.DataFrame({"A": [1]}), pd.DataFrame({"A": [1]})),
+        (pd.Series([1]), pd.DataFrame({"A": [1]})),
+        (pd.DataFrame({"A": [1]}), pd.Series([1])),
+    ],
+    ids=lambda x: f"({type(x[0]).__name__},{type(x[1]).__name__})",
+)
+```
 
 ## Code changes
 
