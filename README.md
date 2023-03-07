@@ -219,7 +219,24 @@ Below you can see a call graph where the red lines show what we changed.
 #### How did you grow as a team, using the Essence standard to evaluate yourself?
 We evaluated that according to the essence checklist (p. 52), we are working on the "Performing" level. This is because we fulfill all the checklist items before "Performing" in addition to the ones directly linked to "Performing". The team identifies and adresses problem without any outside help and is effective in the sense that minimal backtracking or reworking has been neccesary. We do not consider ourselves to fulfill "Adjourned" however, as we are not yet done with everything related to the issue. Further work could be done to resolve the issue in a better way.
 
-Optional (point 6): How would you put your work in context with best software engineering practice?
+#### Optional (point 6): How would you put your work in context with best software engineering practice?
+Because of the nature of the assignment, i.e. contributing to an already existing project, using the Essence standard, or more specifically the *Work* alpha checklist, 
+becomes sort of meaningless since many checklist items, such as "The source of funding is clear." or "Risk exposure is understood", are not applicable (or already fulfilled depending on how you look at it).
+
+Disregarding those, we find that did not fulfill many checklist items. Some of it is because a lot of time was spent on finding a project and an issue, i.e. tasks in the *Initated*-state,
+because familiarizing ourselves with the project, and even finding where the problem was, took a lot of time and was done together in the whole group. When we finally found out what
+function did what the solution was kind of obvious as all components already existed but was not entirely connected. This means that we do not even fulfill "The work is being broken down into actionable work items with clear definitions of
+done." because we did not structure the work that clearly.
+
+However, when googling "good software engineering practice" and looking at the first result ([link](https://www.apollotechnical.com/8-best-practices-for-software-engineers/))
+we can find that we do follow some of these practices such as *use version control* and *test often* but not all of them.
+For example, we did not follow the *be descriptive* practice, instead of renaming the `__finalize__` function to `propagate_metadata` or 
+something we opted for just using the current function, prioritizing using the code already written.
+
+We think that the key take-away after doung this evaluation is that not all "best practices" fit all projects but having knowledge about a lot of them allows use to choose which ones to use in any 
+given project.
+
+
 
 Optional (point 7): Is there something special you want to mention here?
 
