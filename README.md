@@ -175,7 +175,17 @@ git diff main..refactor1
 
 In the file containing all test cases relevant to the issue, we removed several lines of code. This code was simply marking all test cases relevant to the issue as "xfail" which tells pytest (the testing package used in the project) that they are expected to fail. After resolving the issue, we removed the markings because the tests are now expected to pass.
 
-More specifically the changes we did was when calling for the method _contruct_result we also send the other Series into that function. Cause what happened in _contruct_result was that it then called __finalize__ which basically added the attributes to the result, it only did so no the first Series. When now sending the other Series to the method we could alos call __finalize__ with the other, making its attributes being added to the result aswell.
+The issue itself stemmed from arithmetic operations only taking into account the first of the series, whereas ignoring attributes and only extracting data from the other. A simplified function call graph can be found below to get a better overview. As can be seen, there are no issues when adding two series up until returning from `pandas/core/base`. In that step, `ser1` is lost, only the resulting data of the arithmetic operation being kept and upon proceeding to call `ser2._construct_result` from main, only metadata from `ser2` can be propagated. Our patch consisted of adding another field to the `_construct_result` method in order to include `ser1` and keep the associated `_attrs`, adjust calls to the method accordingly, as well as including a second call to finalize in the last step of pandas/core/series; `out.__finalize__(ser1)` properly propagating the `_attrs` to the new series. See further below for the updated call graph.
+
+##### Original call graph
+<div>
+  <img src='/pandas_original_callgraph.jpg' width='400'/>
+</div>
+
+##### Patched call graph
+<div>
+  <img src='/pandas_patched_callgraph.jpg' width='400'/>
+</div>
 
 The other change we did was concering the fact that when adding together a Series and a DataFrame, the Series was first transformed to a DataFrame. In this conversion the attributes did not follow, as there was no implementation of it doing so. What we then did was to call __finalize__ on the newly created DataFrame, sending in the old Series, which added the attributes of the Series to the DataFrame.
 
