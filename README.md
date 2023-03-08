@@ -58,7 +58,7 @@ you took care of and where you spent your time, if that time exceeds
 
 ## Overview of issue(s) and work done.
 
-Title:
+Title: 
 
 URL:
 
@@ -192,8 +192,6 @@ The other change we did was concering the fact that when adding together a Serie
 #### Optional (point 4): the patch is clean.
 Yes, the patch is clean. There is no debug output and all code that was no longer neccesary was removed rather than commented out.
 
-#### Optional (point 5): considered for acceptance (passes all automated checks).
-
 ## Test results
 
 #### Overall results with link to a copy or excerpt of the logs (before/after refactoring).
@@ -215,16 +213,12 @@ After issue was resolved:
 
 ### Key changes/classes affected
 
-Optional (point 1): Architectural overview.
-
 #### Optional (point 2): relation to design pattern(s).
 For changes in the source there were a few patterns we had to take into consideration. For such a small issue as we had, we quickly decided not make any new functions for resolving the issue. Rather we made some minor changes in the existing function. For example there was a function which was called finalize which basically took the attributes of one Series or DataFrame and copied it to the newly created Series/DataFrame. Instead of changing how finalize worked, perhaps changing so it took both old Series/DataFrames as inputs, we decided to just call finalize once again with the other Series/DataFrame. This might not be the most neat solution but changing finalize would require more changes to the design pattern than we felt was comfortable. If one were to make an more thorough refactoring you would probably look to make changes to the function that adds the Series/DataFrames to handle attributes in the same stage rather than having a function which needs to be called in the end. But since attributes seems to be quite new in Pandas, it kind of looks like they just added a new function implementing what they wanted.
 
-Below you can see a call graph where the red lines show what we changed.
+Please see the call graph above for an further understanding.
 
 ## Overall experience
-
-#### What are your main take-aways from this project? What did you learn?
 
 #### How did you grow as a team, using the Essence standard to evaluate yourself?
 We evaluated that according to the essence checklist (p. 52), we are working on the "Performing" level. This is because we fulfill all the checklist items before "Performing" in addition to the ones directly linked to "Performing". The team identifies and adresses problem without any outside help and is effective in the sense that minimal backtracking or reworking has been neccesary. We do not consider ourselves to fulfill "Adjourned" however, as we are not yet done with everything related to the issue. Further work could be done to resolve the issue in a better way.
@@ -246,9 +240,6 @@ something we opted for just using the current function, prioritizing using the c
 We think that the key take-away after doung this evaluation is that not all "best practices" fit all projects but having knowledge about a lot of them allows use to choose which ones to use in any 
 given project.
 
-
-
-Optional (point 7): Is there something special you want to mention here?
 
 
 # pandas: powerful Python data analysis toolkit
