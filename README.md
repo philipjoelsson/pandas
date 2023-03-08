@@ -35,7 +35,10 @@ Also more difficult to get an understanding of the program as a whole.
 ## Effort spent
 
 For each team member, how much time was spent in
-
+Time_sheet.JPG
+<div>
+  <img src='/Time_sheet.JPG' width='800'/>
+</div>
 1. plenary discussions/meetings;
 -  Philip:
 -  Gabriel:
