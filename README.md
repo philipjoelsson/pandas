@@ -34,70 +34,9 @@ Also more difficult to get an understanding of the program as a whole.
 
 ## Effort spent
 
-For each team member, how much time was spent in
-Time_sheet.JPG
 <div>
   <img src='/Time_sheet.JPG' width='800'/>
 </div>
-1. plenary discussions/meetings;
--  Philip:
--  Gabriel:
--  Frida: 
--  Gustaw: 
--  Marcus: 
-
-2. discussions within parts of the group;
--  Philip:
--  Gabriel:
--  Frida: 
--  Gustaw: 
--  Marcus: 
-
-3. reading documentation;
--  Philip:
--  Gabriel:
--  Frida: 
--  Gustaw: 
--  Marcus: 
-
-4. configuration and setup;
--  Philip:
--  Gabriel:
--  Frida: 
--  Gustaw: 
--  Marcus: 
-
-5. analyzing code/output;
--  Philip:
--  Gabriel:
--  Frida: 
--  Gustaw: 
--  Marcus: 
-
-6. writing documentation;
--  Philip:
--  Gabriel:
--  Frida: 
--  Gustaw: 
--  Marcus: 
-
-7. writing code;
--  Philip:
--  Gabriel:
--  Frida: 
--  Gustaw: 
--  Marcus: 
-
-8. running code?
--  Philip:
--  Gabriel:
--  Frida: 
--  Gustaw: 
--  Marcus: 
-
-For setting up tools and libraries (step 4), enumerate all dependencies
-you took care of and where you spent your time, if that time exceeds
-30 minutes.
 
 ## Overview of issue(s) and work done.
 
