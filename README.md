@@ -98,13 +98,11 @@ you took care of and where you spent your time, if that time exceeds
 
 ## Overview of issue(s) and work done.
 
-Title: 
+Title: BUG: binary operations don't propogate attrs depending on order with Series and/or DataFrame/Series
 
-URL:
+URL: https://github.com/pandas-dev/pandas/issues/51607
 
-Summary in one or two sentences
-
-Scope (functionality and code affected).
+#### Summary in one or two sentences
 
 ## Requirements for the new feature or requirements affected by functionality being refactored
 
