@@ -246,7 +246,7 @@ After issue was resolved:
 ## UML class diagram and its description
 
 <div>
-  <img src='/assignment4_uml.png' width='400'/>
+  <img src='/assignment4_uml_new.png' width='400'/>
 </div>
 
 ### Key changes/classes affected
