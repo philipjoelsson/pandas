@@ -45,6 +45,7 @@ Title: BUG: binary operations don't propogate attrs depending on order with Seri
 URL: https://github.com/pandas-dev/pandas/issues/51607
 
 #### Summary in one or two sentences
+When doing binary operations on with Series/DataFrames, attributes does not propogate depending on order in which they are written. If there are two Series the attrs of the right one never propogates, but when having DataFrames together with Series the attrs of the Series never propgates,  no matter the order.
 
 ## Requirements for the new feature or requirements affected by functionality being refactored
 
