@@ -177,7 +177,7 @@ Yes, the patch is clean. There is no debug output and all code that was no longe
 
 #### Overall results with link to a copy or excerpt of the logs (before/after refactoring).
 
-Test logs before/after refactoring: [logs](https://github.com/philipjoelsson/pandas/tree/documentation/test_logs)
+Test logs before/after refactoring: [logs](https://github.com/philipjoelsson/pandas/tree/main/test_logs)
 
 Only the testfile referenced in issue was tested. Testing the whole test-suite did not work, as there are to
 many test-cases. Approximately 500000 tests in total in the whole test-suite.
